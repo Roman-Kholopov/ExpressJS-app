@@ -5,104 +5,30 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1></h1>
-    <div class="table-wrapper">
-      <table class="fl-table">
-          <thead>
-          <tr>
-              <th><%= users[0] %></th>
-              <th>Header 2</th>
-              <th>Header 3</th>
-              <th>Header 4</th>
-              <th>Header 5</th>
-              <th>Header 6</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-              <td><%= users[0].id %></td>
-              <td><%= users[0].name %></td>
-              <td><%= users[0].username %></td>
-              <td><%= users[0].email %></td>
-              <td><%= users[0].phone %></td>
-              <td><%= users[0].website %></td>
-          </tr>
-          <tr>
-              <td><%= users[1].id %></td>
-              <td><%= users[1].name %></td>
-              <td><%= users[1].username %></td>
-              <td><%= users[1].email %></td>
-              <td><%= users[1].phone %></td>
-              <td><%= users[1].website %></td>
-          </tr>
-          <tr>
-              <td><%= users[2].id %></td>
-              <td><%= users[2].name %></td>
-              <td><%= users[2].username %></td>
-              <td><%= users[2].email %></td>
-              <td><%= users[2].phone %></td>
-              <td><%= users[2].website %></td>
-          </tr>
-          <tr>
-              <td><%= users[3].id %></td>
-              <td><%= users[3].name %></td>
-              <td><%= users[3].username %></td>
-              <td><%= users[3].email %></td>
-              <td><%= users[3].phone %></td>
-              <td><%= users[3].website %></td>
-          </tr>
-          <tr>
-              <td><%= users[4].id %></td>
-              <td><%= users[4].name %></td>
-              <td><%= users[4].username %></td>
-              <td><%= users[4].email %></td>
-              <td><%= users[4].phone %></td>
-              <td><%= users[4].website %></td>
-          </tr>
-          <tr>
-              <td><%= users[5].id %></td>
-              <td><%= users[5].name %></td>
-              <td><%= users[5].username %></td>
-              <td><%= users[5].email %></td>
-              <td><%= users[5].phone %></td>
-              <td><%= users[5].website %></td>
-          </tr>
-          <tr>
-              <td><%= users[6].id %></td>
-              <td><%= users[6].name %></td>
-              <td><%= users[6].username %></td>
-              <td><%= users[6].email %></td>
-              <td><%= users[6].phone %></td>
-              <td><%= users[6].website %></td>
-          </tr>
-          <tr>
-              <td><%= users[7].id %></td>
-              <td><%= users[7].name %></td>
-              <td><%= users[7].username %></td>
-              <td><%= users[7].email %></td>
-              <td><%= users[7].phone %></td>
-              <td><%= users[7].website %></td>
-          </tr>
-          <tr>
-              <td><%= users[8].id %></td>
-              <td><%= users[8].name %></td>
-              <td><%= users[8].username %></td>
-              <td><%= users[8].email %></td>
-              <td><%= users[8].phone %></td>
-              <td><%= users[8].website %></td>
-          </tr>
-          <tr>
-              <td><%= users[9].id %></td>
-              <td><%= users[9].name %></td>
-              <td><%= users[9].username %></td>
-              <td><%= users[9].email %></td>
-              <td><%= users[9].phone %></td>
-              <td><%= users[9].website %></td>
-          </tr>
-          <tbody>
-      </table>
-  </div>
-    <p><%= users[0].name %></p>
-    <p><%= users [0]%></p>
+  <ul>
+    <% users.forEach((user)=> { %>
+        <li>
+            <h2>
+                <%= user.name %>
+            </h2>
+            <p>
+                <%= user.id %>
+            </p>
+            <p>
+                <%= user.username %>
+            </p>
+            <p>
+                <%= user.email %>
+            </p>
+            <p>
+                <%= user.phone %>
+            </p>
+            <p>
+                <%= user.website %>
+            </p>
+        </li>
+        <hr />
+    <% }) %>
+    </ul>
   </body>
 </html>
