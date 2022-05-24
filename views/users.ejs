@@ -5,18 +5,24 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-  <ul>
-    <% users.forEach((user)=> { %>
-        <li>
-            <h2>
-                <%= user.username %>
-            </h2>
-            <p>
-                <%= user.email %>
-            </p>
-        </li>
-        <hr />
-    <% }) %>
-    </ul>
+    <header>
+      <%- include('partials/header'); %>
+    </header>
+    <ul>
+      <% users.forEach((user)=> { %>
+          <li>
+              <h2>
+                  <%= user.username %>
+              </h2>
+              <p>
+                  <%= user.email %>
+              </p>
+          </li>
+          <hr />
+      <% }) %>
+      </ul>
+      <footer>
+        <%- include('partials/footer'); %>
+      </footer>  
   </body>
 </html>
