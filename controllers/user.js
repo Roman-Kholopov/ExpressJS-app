@@ -10,7 +10,7 @@ async function getUserList(req, res) {
         email: user.email,
     }));
 
-    res.render('users', { users: userList });
+    res.render('user/list', { users: userList });
 
 }
 
