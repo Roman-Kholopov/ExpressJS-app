@@ -5,6 +5,8 @@ class User {
   async fetchUsers() {
     try {
       const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+      // const response = await axios.get('https://jsonplaceholder.tode.com/users');
+
       return response;
     } catch (error) {
       console.error(error);
