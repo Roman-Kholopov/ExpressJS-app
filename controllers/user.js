@@ -13,7 +13,7 @@ async function getUserList(req, res, next) {
     
         res.render('user/list', { users: userList });    
     } catch (err) {
-        next(new Error('Произошла ошибка и конструктор try {} catch() {} поймал её'));
+        next(err);
     }
 
 }
