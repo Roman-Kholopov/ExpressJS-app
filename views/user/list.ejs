@@ -10,19 +10,25 @@
     </header>
     <ul>
       <% users.forEach((user)=> { %>
-          <li>
-              <h2>
+          <li >
+              <h2 >
                   <%= user.username %>
               </h2>
               <p>
+                <%= user.id %>
+              </p>
+              <p>
                   <%= user.email %>
               </p>
+              <button>Edit</button>
+              <button>Delete</button>
+              <button onclick="window.location.href='/users/<%= user.id %>'">Show</button>
           </li>
           <hr />
       <% }) %>
       </ul>
       <footer>
         <%- include('../partials/footer'); %>
-      </footer>  
+      </footer>
   </body>
 </html>

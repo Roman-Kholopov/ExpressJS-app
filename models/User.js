@@ -11,9 +11,15 @@ class User {
       console.error(error);
     }
   }
-  
-  getUserById() {
-  //TODO: реализация будет позже
+
+  async getUserById(id) {
+    try {
+      const { data } = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
+
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   deleteUserById() {
