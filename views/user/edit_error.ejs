@@ -6,11 +6,13 @@
     <header>
       <%- include('../partials/header'); %>
     </header>
-    <h1><%= title %></h1>
-    <% for (key in error) { %>
-      <p>Ошибка в поле <%= error[key] %></p>
-    <% } %>
-    <button onclick="window.location.href='/users/<%= userId %>/edit'"><%= button %></button>
+    <h1>Edit error</h1>
+
+    <% errors.forEach((error) => { %>
+      <p>Поле <%= error.field %></p>
+      <p><%= error.massage %></p>
+      <% }) %>
+    <button onclick="window.location.href='/users/<%= userId %>/edit'">Prev</button>
     <footer>
       <%- include('../partials/footer'); %>
     </footer>  

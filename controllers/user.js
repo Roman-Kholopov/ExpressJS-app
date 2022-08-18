@@ -1,5 +1,5 @@
-const validator = require('validator');
 const User = require('../models/User');
+const userValidator = require('../utils/validators/userValidator')
 
 async function getUserList(req, res, next) {
     try {
@@ -28,8 +28,6 @@ async function getUserById(req, res, next) {
 
         const carrentUser = await user.getUserById(userId);
 
-        console.log(carrentUser);
-
         res.render('user/user', { user: carrentUser});
     } catch (err) {
         next(err);
@@ -44,8 +42,6 @@ async function editUserById(req, res, next) {
         const userId = req.params.userId;
 
         const carrentUser = await user.getUserById(userId);
-
-        // console.log(carrentUser);
         
         res.render('user/edit', { 
             user: carrentUser, 
@@ -66,110 +62,26 @@ async function createUserById(req, res, next) {
 
 }
 
-
 async function editUser(req, res, next) {
-    const body = req.body;
+    try {
+        const body = req.body;
 
-    const userId = req.params.userId;
-
-
-    function validateUser(body) {
-        const {username, email, street, city, phone} = body;
-        const validUsername = validator.isAlpha(username);
-        const validMail = validator.isEmail(email);
-        // const validStreet = street ? true : false;
-        const validStreet = validator.isAlpha(street);
-        const validCity = validator.isAlpha(city);
-        const validPhone = phone ? true : false;
-        let error = {};
-        let flag = true;
-
-        if(!validUsername) {
-            error.validUsername = '*Имя*';
-            flag = false;
-        }
-        
-        if(!validMail) {
-            error.validMail = '*E-mail*';
-            flag = false;
-        }
-
-        if(!validStreet) {
-            error.validStreet = '*Улица*';
-            flag = false;
-        }
-
-        if(!validCity) {
-            error.validCity = '*Город*';
-            flag = false;
-        }
-
-        if(!validPhone) {
-            error.validPhone = '*Телефон*';
-            flag = false;
-        }
-
-        if(flag) {
-            res.render('user/edit_succes', {
-                title: 'Edit succes',
-                button: 'Go home'
-            });
+        const userId = req.params.userId;
+    
+        const validate = userValidator(body);
+    
+        if(validate[0]) {
+            res.render('user/edit_succes');
         } else {
             res.render('user/edit_error', {
-                title: 'Edit error',
-                button: 'Prev',
                 userId: userId,
-                error: error
+                errors: validate[1]
             });
-
-            // console.log(error);
         }
-
-        // if(validMail && validUsername && validStreet && validCity && validPhone) {
-        //     res.render('user/edit_succes', {
-        //         title: 'Edit succes',
-        //         button: 'Go home'
-        //     });
-        // } else {
-        //     res.render('user/edit_error', {
-        //         title: 'Edit error',
-        //         button: 'Prev',
-        //         userId: userId
-        //     });
-        // };
+    
+    } catch (err) {
+        next(err);
     }
-
-    validateUser(body);
-
-    // const validUsername = body.username.trim() ? true : false;
-    // const validUsername = validator.isAlpha(body.username);
-    // const validMail = validator.isEmail(body.email);
-    // const validStreet = body.street ? true : false;
-    // const validStreet = validator.isAlpha(body.street);
-    // const validCity = validator.isAlpha(body.city);
-    // const validPhone = body.phone ? true : false;
-    // const validPhone = validator.isAlphanumeric(body.phone);
-    
-    // console.log(body);
-
-    // const userId = req.params.userId;
-
-    // console.log(userId);
-    // console.log(req.params);
-
-    
-    // if(validMail && validUsername && validStreet && validCity && validPhone) {
-    //     res.render('user/edit_succes', {
-    //         title: 'Edit succes',
-    //         button: 'Go home'
-    //     });
-    // } else {
-    //     res.render('user/edit_error', {
-    //         title: 'Edit error',
-    //         button: 'Prev',
-    //         userId: userId
-    //     });
-    // };
     
 };
 
