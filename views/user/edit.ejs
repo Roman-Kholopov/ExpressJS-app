@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Create new user</title>
+    <%- include('../partials/head'); %>  </head>
+  <body>
+    <header>
+      <%- include('../partials/header'); %>
+    </header>
+      <h1><%= title %></h1>
+      <form action="/users/<%= user.id %>/edit" method="post">
+        <fieldset>
+          <legend>Edit user</legend>
+          <p><label>Имя</label><input id="username" name="username" type="text" value="<%= user.username %>"></p>
+          <p><label>E-mail</label><input name="email" type="text" value="<%= user.email %>"></p>
+          <p><label>Улица</label><input name="street" type="text" value="<%= user.address.street %>"></p>
+          <p><label>Город</label><input name="city" type="text" value="<%= user.address.city %>"></p>
+          <p><label>Телефон</label><input name="phone" type="text" value="<%= user.phone %>"></p>
+        </fieldset>
+        <p><input type="submit" value="Save" onclick=""></p>
+      </form>
+    <footer>
+      <%- include('../partials/footer'); %>
+    </footer>
+  </body>
+</html>
