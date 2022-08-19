@@ -1,21 +1,24 @@
 const validator = require('validator');
+const trimStr = require('../trims/trimStrInObj');
 
 function validateUser(body) {
-    const {username, email, street, city, phone} = body;
-    const validUsername = validator.isLength(username.trim(), {min:2, max: 20});
-    const validMail = validator.isEmail(email.trim());
-    const validStreet = validator.isLength(street.trim(), {min:2, max: 20});
-    const validCity = validator.isAlpha(city.trim());
-    const validPhone = validator.isLength(phone.trim(), {min:13, max: 22});
+
+    const trimObj = trimStr(body);
+
+    const {username, email, street, city, phone} = trimObj;
+    const validUsername = validator.isLength(username, {min:2, max: 20});
+    const validMail = validator.isEmail(email);
+    const validStreet = validator.isLength(street, {min:2, max: 20});
+    const validCity = validator.isAlpha(city);
+    const validPhone = validator.isLength(phone, {min:13, max: 22});
+
     const errors = [];
-    let flag = true;
 
     if(!validUsername) {
         errors.push({
             field: '*Имя*',
             massage: 'Слишком короткое или слишком длинное имя'    
         })
-        flag = false;
     }
 
     if(!validMail) {
@@ -23,7 +26,6 @@ function validateUser(body) {
             field: '*E-mail*',
             massage: 'Некорректный E-mail'    
         })
-        flag = false;
     }
 
     if(!validStreet) {
@@ -31,7 +33,6 @@ function validateUser(body) {
             field: '*Улица*',
             massage: 'Слишком короткое или слишком длинное название улицы'
         })
-        flag = false;
     }
 
     if(!validCity) {
@@ -39,7 +40,6 @@ function validateUser(body) {
             field: '*Город*',
             massage: 'В поле город допускаются только буквы'    
         })
-        flag = false;
     }
 
     if(!validPhone) {
@@ -47,10 +47,12 @@ function validateUser(body) {
             field: '*Телефон*',
             massage: 'Слишком короткий или слишком длинный номер телефона'    
         })
-        flag = false;
     }
 
-    return [flag, errors];
+    return {
+        errors,
+        isValid: errors.length ? false : true,
+      }
 
 };
 

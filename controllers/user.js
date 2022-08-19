@@ -67,15 +67,15 @@ async function editUser(req, res, next) {
         const body = req.body;
 
         const userId = req.params.userId;
-    
-        const validate = userValidator(body);
-    
-        if(validate[0]) {
+
+        const {isValid, errors} = userValidator(body);
+
+        if(isValid) {
             res.render('user/edit_succes');
         } else {
             res.render('user/edit_error', {
                 userId: userId,
-                errors: validate[1]
+                errors: errors
             });
         }
     
