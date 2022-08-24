@@ -12,7 +12,7 @@ async function getUserList(req, res, next) {
             username: user.username,
             email: user.email,
         }));
-    
+
         res.render('user/list', { users: userList });    
     } catch (err) {
         next(err);
@@ -22,6 +22,7 @@ async function getUserList(req, res, next) {
 
 async function getUserById(req, res, next) {
     try {
+        console.log('getUserById');
         const user = new User();
 
         const userId = req.params.userId;
@@ -85,8 +86,57 @@ async function editUser(req, res, next) {
     
 };
 
+async function deleteUserById(req, res, next) {
+    try {
+        console.log('deleteUserById');
+        const userId = req.params.userId;
+
+        const user = new User();
+
+        const data = await user.deleteUserById(userId);
+    
+        res.render('user/delete_succes');
+
+        if(data.status === 200) {
+            console.log(data.statusText)
+        }
+    } catch (err) {
+        next(err);
+    }
+
+}
+
+async function createNewUser(req, res, next) {
+    try {
+        const body = req.body;
+
+        const {isValid, errors} = userValidator(body);
+
+        if(isValid) {
+            const user = new User();
+
+            const data = await user.createUser(body);
+
+            res.render('user/create_succes', {
+                newUser: data.id
+            })
+    
+        } else {
+            res.render('user/create_error', {
+                errors: errors
+            })
+        }
+
+    } catch (err) {
+        next(err);
+    }
+    
+};
+
 module.exports.getUserList = getUserList;
 module.exports.getUserById = getUserById;
 module.exports.editUserById = editUserById;
 module.exports.createUserById = createUserById;
 module.exports.editUser = editUser;
+module.exports.deleteUserById = deleteUserById;
+module.exports.createNewUser = createNewUser;

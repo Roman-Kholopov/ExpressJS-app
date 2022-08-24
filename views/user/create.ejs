@@ -7,6 +7,18 @@
       <%- include('../partials/header'); %>
     </header>
     <h1>Page: create a new user</h1>
+    <form action="/users/create_user" method="post">
+      <fieldset>
+        <legend>New user</legend>
+        <p><label>Имя</label><input id="username" name="username" type="text" value=""></p>
+        <p><label>E-mail</label><input name="email" type="text" value=""></p>
+        <p><label>Улица</label><input name="street" type="text" value=""></p>
+        <p><label>Город</label><input name="city" type="text" value=""></p>
+        <p><label>Телефон</label><input name="phone" type="text" value=""></p>
+      </fieldset>
+      <p><input type="submit" value="Create" onclick=""></p>
+    </form>
+
     <footer>
       <%- include('../partials/footer'); %>
     </footer>  
