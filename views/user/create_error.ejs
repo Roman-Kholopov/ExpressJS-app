@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>Create new user</title>
+    <%- include('../partials/head'); %>  </head>
+  <body>
+    <header>
+      <%- include('../partials/header'); %>
+    </header>
+    <h1>Create error</h1>
+
+    <% errors.forEach((error) => { %>
+      <p>Поле <%= error.field %></p>
+      <p><%= error.massage %></p>
+      <% }) %>
+    <button onclick="window.location.href='/users/create_user'">Prev</button>
+    <footer>
+      <%- include('../partials/footer'); %>
+    </footer>  
+  </body>
+</html>

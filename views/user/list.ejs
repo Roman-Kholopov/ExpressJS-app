@@ -21,8 +21,11 @@
                   <%= user.email %>
               </p>
               <button onclick="window.location.href='/users/<%= user.id %>/edit'">Edit</button>
-              <button>Delete</button>
-              <button onclick="window.location.href='/users/<%= user.id %>'">Show</button>
+              <!-- <button onclick="window.location.href='/users/<%= user.id %>'">Delete</button> -->
+              <!-- <form action="/users/<%= user.id %>" method="DELETE"> -->
+              <!-- <button type="submit" onclick="deleteUser(<%= user.id %>)">Delete</button> -->
+              <button onclick="deleteUser(<%= user.id %>)">Delete</button>
+              <a href="/users/<%= user.id %>"><button>Show</button></a>
           </li>
           <hr />
       <% }) %>
@@ -30,5 +33,17 @@
       <footer>
         <%- include('../partials/footer'); %>
       </footer>
+      <script>
+        function deleteUser(id) {
+          try {
+            console.log('deleteUser');
+            fetch(`/users/${id}`, {
+              method: 'DELETE',
+            })
+          } catch (err) {
+            console.log(err)
+          }
+        }
+      </script>
   </body>
 </html>
